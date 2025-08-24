@@ -1,0 +1,44 @@
+
+.bg-custom-dark {
+  background-color: #18181a; 
+}
+
+
+.register-card {
+  background-color: #f8f9fa; 
+  max-width: 500px;
+  border: 1px solid #dee2e6; 
+}
+
+
+.text-custom-dark {
+  color: #212529; 
+  font-weight: 600;
+}
+
+
+.custom-input {
+  background-color: #f8f9fa;
+  border: none;
+  border-bottom: 2px solid #ced4da;
+  border-radius: 0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #212529; 
+  box-shadow: none;
+}
+
+
+.custom-btn {
+  background-color: #212529; 
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-btn:hover {
+  background-color: #596674; 
+  transform: translateY(-2px);
+}
