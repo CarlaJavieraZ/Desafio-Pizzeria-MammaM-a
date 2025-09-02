@@ -4,15 +4,17 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import RegisterPage from "./components/RegisterPage.jsx";
 import LoginPage from "./components/LoginPage.jsx";
+import Cart from "./components/Cart.jsx"
 
 const App =()=> {
 
   return (
     <>
     <Navbar />
-    { /* <Home /> */ }
+    {/* <Home /> */}
     {/* <RegisterPage/> */}
-    <LoginPage/>
+    {/* <LoginPage /> */}
+    <Cart />
     <Footer />
     </>
   )
