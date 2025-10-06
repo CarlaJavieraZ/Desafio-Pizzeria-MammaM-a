@@ -12,9 +12,16 @@ function Home() {
         const data = await res.json();
         setPizzas(data);
       } catch {
-        
+        // fallback si falla el fetch
         setPizzas([
-          { id:1, name:"Margarita", desc:"Queso y tomate", price:5000, ingredients:["Queso","Tomate"], img:"https://via.placeholder.com/150" }
+          { 
+            id: 1, 
+            name: "Margarita", 
+            desc: "Queso y tomate", 
+            price: 5000, 
+            ingredients: ["Queso", "Tomate"], 
+            img: "https://via.placeholder.com/150" 
+          }
         ]);
       }
     }
@@ -30,9 +37,9 @@ function Home() {
           <p className="text-muted">Elige tu favorita y agrégala al carrito</p>
         </div>
         <div className="row g-4">
-          {pizzas.map(pizza => (
+          {pizzas.map((pizza) => (
             <div key={pizza.id} className="col-sm-12 col-md-6 col-lg-4">
-              <CardPizza {...pizza} />
+              <CardPizza pizza={pizza} /> {/* 👈 paso la pizza a la card */}
             </div>
           ))}
         </div>

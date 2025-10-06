@@ -1,33 +1,37 @@
-import React from 'react';
+import { useCart } from "../context/CartContext";
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+function CardPizza({ pizza }) {
+  const { addToCart } = useCart();
+
   return (
-    <div className="card">
-      <img src={img} className="card-img-top" alt={name} />
-      <div className="card-body">
-        <h3 className="card-text border-bottom pb-3">{name}</h3>
-
-        <p className="text-center text-body-tertiary">Ingredientes:</p>
-
-        <ul className="text-center list-unstyled border-bottom pb-2">
-          {ingredients.map((ing, i) => (
-            <li key={i}>🍕 {ing}</li>
+    <div className="card h-100">
+      <img src={pizza.img} className="card-img-top" alt={pizza.name} />
+      <div className="card-body d-flex flex-column">
+        <h5 className="card-title">{pizza.name}</h5>
+        <p className="card-text text-muted">{pizza.desc}</p>
+        <ul className="list-unstyled">
+          {pizza.ingredients?.map((ing, i) => (
+            <li key={i}>🍴 {ing}</li>
           ))}
         </ul>
-
-        <h2 className="card-text text-center">${price}</h2>
-
-        <div className="d-flex justify-content-around">
-          <a href="#" className="btn btn-outline-dark me-4">
-            Ver más 👀
-          </a>
-          <a href="#" className="btn btn-dark">
+        <div className="mt-auto d-flex justify-content-between align-items-center">
+          <span className="fw-bold">
+            {pizza.price.toLocaleString("es-CL", {
+              style: "currency",
+              currency: "CLP",
+            })}
+          </span>
+          <button
+            className="btn btn-success"
+            onClick={() => addToCart(pizza)}
+          >
             Añadir 🛒
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default CardPizza;
+
