@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext"; // 👈 importar el contexto
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function Navbar() {
-  const { total } = useCart(); // 👈 obtener el total del carrito
-  const token = true;
+  const { cart, token, logout } = useCart();
+  const navigate = useNavigate();
+
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Pizzería Mamma Mía!
+          🍕 Pizzería Mamma Mia!
         </Link>
 
         <button
@@ -25,46 +33,47 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto align-items-center">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+                🍕 Home
               </Link>
             </li>
 
-            {token ? (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profile">
-                    Profile
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <button className="btn btn-outline-light ms-2">Logout</button>
-                </li>
-              </>
-            ) : (
+            {token && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">
+                  👤 Perfil
+                </Link>
+              </li>
+            )}
+          </ul>
+
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            {!token ? (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">
-                    Login
+                    🔑 Login
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">
-                    Register
+                    🔐 Registro
                   </Link>
                 </li>
               </>
+            ) : (
+              <li className="nav-item">
+                <button className="btn btn-outline-light" onClick={handleLogout}>
+                  🚪 Logout
+                </button>
+              </li>
             )}
 
-            <li className="nav-item">
-              <Link className="btn btn-info ms-3" to="/cart">
-                🛒 Total:{" "}
-                {total.toLocaleString("es-CL", {
-                  style: "currency",
-                  currency: "CLP",
-                })}
+            <li className="nav-item ms-3">
+              <Link className="nav-link" to="/cart">
+                🛒 ${totalPrice.toLocaleString()} ({totalItems})
               </Link>
             </li>
           </ul>

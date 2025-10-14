@@ -6,8 +6,8 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [token, setToken] = useState(true); // token simulado
 
-  
   const addToCart = (pizza) => {
     setCart((prevCart) => {
       const itemExist = prevCart.find((item) => item.id === pizza.id);
@@ -21,7 +21,6 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  
   const removeFromCart = (pizzaId) => {
     setCart((prevCart) =>
       prevCart
@@ -32,15 +31,23 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  
-  const total = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const logout = () => setToken(false);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, total }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        total,
+        token,
+        logout,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
+

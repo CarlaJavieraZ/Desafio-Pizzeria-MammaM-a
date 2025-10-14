@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Pizza = () => {
+  const { id } = useParams(); 
   const [pizza, setPizza] = useState(null);
+  const { addToCart } = useCart(); 
 
   useEffect(() => {
     const fetchPizza = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/pizzas/p001");
+        const res = await fetch(`http://localhost:5000/api/pizzas/${id}`);
         const data = await res.json();
         setPizza(data);
       } catch (error) {
@@ -15,7 +19,7 @@ const Pizza = () => {
     };
 
     fetchPizza();
-  }, []);
+  }, [id]);
 
   if (!pizza) {
     return (
@@ -28,7 +32,6 @@ const Pizza = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="card shadow-lg" style={{ width: "28rem" }}>
-       
         <img
           src={pizza.img}
           className="card-img-top"
@@ -36,7 +39,6 @@ const Pizza = () => {
           style={{ height: "250px", objectFit: "cover" }}
         />
 
-       
         <div className="card-body">
           <h2 className="card-title text-center fw-bold">{pizza.name}</h2>
           <p className="card-text text-muted text-center">{pizza.desc}</p>
@@ -51,8 +53,15 @@ const Pizza = () => {
           </ul>
 
           <div className="d-flex justify-content-between align-items-center">
-            <span className="fs-4 fw-bold text-success">${pizza.price}</span>
-            <button className="btn btn-danger">Añadir al carrito</button>
+            <span className="fs-4 fw-bold text-success">
+              ${pizza.price.toLocaleString("es-CL")}
+            </span>
+            <button
+              className="btn btn-danger"
+              onClick={() => addToCart(pizza)}
+            >
+              Añadir al carrito
+            </button>
           </div>
         </div>
       </div>

@@ -1,49 +1,34 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardPizza from "../components/CardPizza";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function Home() {
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
-    async function getPizzas() {
-      try {
-        const res = await fetch("http://localhost:5000/api/pizzas");
-        const data = await res.json();
-        setPizzas(data);
-      } catch {
-        // fallback si falla el fetch
-        setPizzas([
-          { 
-            id: 1, 
-            name: "Margarita", 
-            desc: "Queso y tomate", 
-            price: 5000, 
-            ingredients: ["Queso", "Tomate"], 
-            img: "https://via.placeholder.com/150" 
-          }
-        ]);
-      }
-    }
-    getPizzas();
+    fetch("http://localhost:5000/api/pizzas")
+      .then((res) => res.json())
+      .then((data) => setPizzas(data))
+      .catch((error) => console.error("Error al obtener las pizzas:", error));
   }, []);
 
   return (
     <>
-      <Header />
+      <Header /> 
+      
       <div className="container my-5">
-        <div className="text-center mb-5">
-          <h1 className="fw-bold">🍕 Nuestras Pizzas 🍕</h1>
-          <p className="text-muted">Elige tu favorita y agrégala al carrito</p>
-        </div>
-        <div className="row g-4">
+        <h2 className="mb-4 text-center">🍕 Nuestras Pizzas</h2>
+        <div className="row">
           {pizzas.map((pizza) => (
-            <div key={pizza.id} className="col-sm-12 col-md-6 col-lg-4">
-              <CardPizza pizza={pizza} /> {/* 👈 paso la pizza a la card */}
+            <div className="col-md-4 mb-3" key={pizza.id}>
+              <CardPizza pizza={pizza} />
             </div>
           ))}
         </div>
       </div>
+
+      <Footer /> 
     </>
   );
 }

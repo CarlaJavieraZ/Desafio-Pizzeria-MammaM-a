@@ -1,11 +1,16 @@
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 function CardPizza({ pizza }) {
   const { addToCart } = useCart();
 
   return (
     <div className="card h-100">
-      <img src={pizza.img} className="card-img-top" alt={pizza.name} />
+      {/* Al hacer click en la imagen, vamos a la página de la pizza */}
+      <Link to={`/pizza/${pizza.id}`}>
+        <img src={pizza.img} className="card-img-top" alt={pizza.name} />
+      </Link>
+
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{pizza.name}</h5>
         <p className="card-text text-muted">{pizza.desc}</p>
@@ -14,6 +19,7 @@ function CardPizza({ pizza }) {
             <li key={i}>🍴 {ing}</li>
           ))}
         </ul>
+
         <div className="mt-auto d-flex justify-content-between align-items-center">
           <span className="fw-bold">
             {pizza.price.toLocaleString("es-CL", {
@@ -34,4 +40,3 @@ function CardPizza({ pizza }) {
 }
 
 export default CardPizza;
-
