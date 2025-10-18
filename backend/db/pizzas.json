@@ -1,0 +1,50 @@
+[
+  {
+    "id": "p001",
+    "name": "napolitana",
+    "desc": "La pizza napolitana, de masa tierna y delgada pero bordes altos, es la versión propia de la cocina napolitana de la pizza redonda.",
+    "ingredients": ["mozzarella", "tomates", "jamón", "orégano"],
+    "price": 5950,
+    "img": "/images/pizzas/napolitana.jpeg"
+  },
+  {
+    "id": "p002",
+    "name": "española",
+    "desc": "Pizza española con ingredientes clásicos y deliciosa para todos los gustos.",
+    "ingredients": ["mozzarella", "tomates", "jamón", "choricillo"],
+    "price": 7250,
+    "img": "/images/pizzas/española.jpg"
+  },
+  {
+    "id": "p003",
+    "name": "salame",
+    "desc": "Pizza de salame con un sabor intenso y textura crujiente en los bordes.",
+    "ingredients": ["mozzarella", "tomates", "salame", "orégano"],
+    "price": 5990,
+    "img": "/images/pizzas/salame.jpg"
+  },
+  {
+    "id": "p004",
+    "name": "cuatro estaciones",
+    "desc": "La clásica cuatro estaciones, con ingredientes variados y muy sabrosa.",
+    "ingredients": ["mozzarella", "salame", "aceitunas", "champiñones"],
+    "price": 9590,
+    "img": "/images/pizzas/cuatroestaciones.jpg"
+  },
+  {
+    "id": "p005",
+    "name": "bacon",
+    "desc": "Pizza de bacon con tomates cherry, perfecta para los amantes del sabor ahumado.",
+    "ingredients": ["mozzarella", "tomates cherry", "bacon", "orégano"],
+    "price": 6450,
+    "img": "/images/pizzas/bacon.webp"
+  },
+  {
+    "id": "p006",
+    "name": "pollo picante",
+    "desc": "Pollo picante con pimientos y un toque de orégano, ideal para los que disfrutan del sabor intenso.",
+    "ingredients": ["mozzarella", "pimientos", "pollo grillé", "orégano"],
+    "price": 8500,
+    "img": "/images/pizzas/pollopicante.webp"
+  }
+]

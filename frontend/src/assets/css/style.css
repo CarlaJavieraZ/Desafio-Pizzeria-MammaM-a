@@ -1,0 +1,23 @@
+.bgh {
+  background-size: cover;
+  position: relative;
+  width: 100vw;
+  height: 200px;
+}
+
+.bgh::after {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    height: 200px;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    content: "";
+
+}
+
+.hcontent {
+    position: relative;
+    z-index: 2
+}
